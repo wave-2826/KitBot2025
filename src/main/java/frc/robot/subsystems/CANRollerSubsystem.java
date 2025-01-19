@@ -25,8 +25,8 @@ public class CANRollerSubsystem extends SubsystemBase {
 
   /** This is a method that makes the roller spin */
   public void runRoller(double forward, double reverse) {
-    double forwardSpeed = forward * 0.60;
-    double reverseSpeed = reverse * 0.80;
+    double forwardSpeed = forward * RollerConstants.ROLLER_IN_SPEED;
+    double reverseSpeed = reverse * RollerConstants.ROLLER_OUT_SPEED;
     rollerMotor.set(TalonSRXControlMode.PercentOutput,forwardSpeed - reverseSpeed * 0.30);
   }
 }

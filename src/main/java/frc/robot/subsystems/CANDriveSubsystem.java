@@ -26,11 +26,11 @@ public class CANDriveSubsystem extends SubsystemBase {
   }
 
   public void moveMotors(double leftMotors, double rightMotors) {
-    leftLeader.set(TalonSRXControlMode.PercentOutput, leftMotors * 0.60);
-    leftFollower.set(TalonSRXControlMode.PercentOutput, leftMotors * 0.60);
+    leftLeader.set(TalonSRXControlMode.PercentOutput, leftMotors * DriveConstants.MOTOR_SPEED);
+    leftFollower.set(TalonSRXControlMode.PercentOutput, leftMotors * DriveConstants.MOTOR_SPEED);
     
-    rightLeader.set(TalonSRXControlMode.PercentOutput, -rightMotors * 0.60 );
-    rightFollower.set(TalonSRXControlMode.PercentOutput, -rightMotors * 0.60);
+    rightLeader.set(TalonSRXControlMode.PercentOutput, -rightMotors * DriveConstants.MOTOR_SPEED);
+    rightFollower.set(TalonSRXControlMode.PercentOutput, -rightMotors * DriveConstants.MOTOR_SPEED);
   }
 
   @Override
