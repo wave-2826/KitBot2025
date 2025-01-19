@@ -34,7 +34,7 @@ public final class Constants {
     public static final double ROLLER_MOTOR_VOLTAGE_COMP = 10;
     public static final double ROLLER_EJECT_VALUE = 0.44;
 
-    public static final double ROLLER_OUT_SPEED = 0.80; // AWAY FROM POLYCARB
+    public static final double ROLLER_OUT_SPEED = 0.85; // AWAY FROM POLYCARB
     public static final double ROLLER_IN_SPEED = 0.60; // TOWARD POLYCARB
   }
 
