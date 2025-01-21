@@ -5,6 +5,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -82,9 +83,11 @@ public class RobotContainer {
     // stick away from you (a negative value) drives the robot forwards (a positive
     // value). Similarly for the X axis where we need to flip the value so the
     // joystick matches the WPILib convention of counter-clockwise positive
+
     driveSubsystem.setDefaultCommand(new DriveCommand(
         () -> -driverController.getLeftY(),
         () -> -driverController.getRightY(),
+        () -> driverController.getLeftX(),
         driveSubsystem));
 
     // Set the default command for the roller subsystem to an instance of

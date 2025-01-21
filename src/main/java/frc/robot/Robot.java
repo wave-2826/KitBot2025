@@ -42,7 +42,7 @@ public class Robot extends TimedRobot {
     HAL.report(tResourceType.kResourceType_Framework, 9);
   
     Shuffleboard.getTab("KitBot 2025")
-     .add("Driver Cam", CameraServer.startAutomaticCapture());
+    .add("Driver Cam", CameraServer.startAutomaticCapture());
   }
 
   /**

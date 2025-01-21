@@ -26,6 +26,8 @@ public final class Constants {
     public static final int DRIVE_MOTOR_CURRENT_LIMIT = 60;
 
     public static final double MOTOR_SPEED = 0.50;
+
+    public static final boolean DRIVE_TYPE = false; // True = Diff. False = Tank
   }
 
   public static final class RollerConstants {

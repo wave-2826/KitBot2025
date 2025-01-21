@@ -25,13 +25,38 @@ public class CANDriveSubsystem extends SubsystemBase {
     rightFollower = new TalonSRX(DriveConstants.RIGHT_FOLLOWER_ID);
   }
 
-  public void moveMotors(double leftMotors, double rightMotors) {
+  public void tankDrive(double leftMotors, double rightMotors) {
     leftLeader.set(TalonSRXControlMode.PercentOutput, leftMotors * DriveConstants.MOTOR_SPEED);
     leftFollower.set(TalonSRXControlMode.PercentOutput, leftMotors * DriveConstants.MOTOR_SPEED);
     
     rightLeader.set(TalonSRXControlMode.PercentOutput, -rightMotors * DriveConstants.MOTOR_SPEED);
     rightFollower.set(TalonSRXControlMode.PercentOutput, -rightMotors * DriveConstants.MOTOR_SPEED);
   }
+
+  public void DiffDrive(double stickY, double stickX) {
+    // Apply deadband
+    if (Math.abs(stickY) < 0.1) {
+        stickY = 0;
+    }
+    if (Math.abs(stickX) < 0.1) {
+        stickX = 0;
+    }
+
+    // Calculate left and right motor outputs
+    double leftOutput = stickX + stickY;
+    double rightOutput = stickX - stickY;
+
+    // Scale outputs to be within the range of -1 to 1
+    leftOutput = Math.max(-1, Math.min(1, leftOutput * DriveConstants.MOTOR_SPEED));
+    rightOutput = Math.max(-1, Math.min(1, rightOutput * DriveConstants.MOTOR_SPEED));
+
+    // Set motor outputs
+    leftLeader.set(TalonSRXControlMode.PercentOutput, leftOutput);
+    leftFollower.set(TalonSRXControlMode.PercentOutput, leftOutput);
+    rightLeader.set(TalonSRXControlMode.PercentOutput, rightOutput);
+    rightFollower.set(TalonSRXControlMode.PercentOutput, rightOutput);
+}
+
 
   @Override
   public void periodic() {

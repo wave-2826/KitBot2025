@@ -38,14 +38,14 @@ public class AutoCommand extends Command {
   @Override
   public void execute() {
     // drive at 1/2 speed
-    driveSubsystem.moveMotors(0.5, 0.0);
+    driveSubsystem.tankDrive(0.5, 0.5);
   }
 
   // Runs each time the command ends via isFinished or being interrupted.
   @Override
   public void end(boolean isInterrupted) {
     // stop drive motors
-    driveSubsystem.moveMotors(0.0, 0.0);
+    driveSubsystem.tankDrive(0.0, 0.0);
   }
 
   // Runs every cycle while the command is scheduled to check if the command is

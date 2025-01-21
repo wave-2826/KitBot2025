@@ -6,19 +6,24 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.CANDriveSubsystem;
+
 import java.util.function.DoubleSupplier;
+import frc.robot.Constants.DriveConstants;
+
 
 // Command to drive the robot with joystick inputs
 public class DriveCommand extends Command {
-  private final DoubleSupplier leftSpeed;
-  private final DoubleSupplier rightSpeed;
+  private final DoubleSupplier leftY;
+  private final DoubleSupplier rightY;
+  private final DoubleSupplier leftX;
   private final CANDriveSubsystem driveSubsystem;
 
   // Constructor. Runs only once when the command is first created.
-  public DriveCommand(DoubleSupplier leftSpeed, DoubleSupplier rightSpeed, CANDriveSubsystem driveSubsystem) {
+  public DriveCommand(DoubleSupplier leftY, DoubleSupplier rightY, DoubleSupplier leftX, CANDriveSubsystem driveSubsystem) {
     // Save parameters to local variables for use later
-    this.leftSpeed = leftSpeed;
-    this.rightSpeed = rightSpeed;
+    this.leftY = leftY;
+    this.rightY = rightY;
+    this.leftX = leftX;
     this.driveSubsystem = driveSubsystem;
 
     // Declare subsystems required by this command. This should include any
@@ -34,7 +39,12 @@ public class DriveCommand extends Command {
   // Runs every cycle while the command is scheduled (~50 times per second)
   @Override
   public void execute() {
-    driveSubsystem.moveMotors(leftSpeed.getAsDouble(), rightSpeed.getAsDouble());
+    if (DriveConstants.DRIVE_TYPE) {
+      driveSubsystem.DiffDrive(leftY.getAsDouble(), leftX.getAsDouble());
+    }
+    else {
+      driveSubsystem.tankDrive(leftY.getAsDouble(), rightY.getAsDouble());
+    }
   }
 
   // Runs each time the command ends via isFinished or being interrupted.
