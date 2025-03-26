@@ -27,7 +27,7 @@ public final class Constants {
 
     public static final double MOTOR_SPEED = 0.50;
 
-    public static final boolean DRIVE_TYPE = false; // True = Diff. False = Tank
+    public static final boolean DRIVE_TYPE = true; // True = Diff. False = Tank
   }
 
   public static final class RollerConstants {
@@ -36,7 +36,7 @@ public final class Constants {
     public static final double ROLLER_MOTOR_VOLTAGE_COMP = 10;
     public static final double ROLLER_EJECT_VALUE = 0.44;
 
-    public static final double ROLLER_OUT_SPEED = 0.85; // AWAY FROM POLYCARB
+    public static final double ROLLER_OUT_SPEED = 0.55; // AWAY FROM POLYCARB
     public static final double ROLLER_IN_SPEED = 0.60; // TOWARD POLYCARB
   }
 
