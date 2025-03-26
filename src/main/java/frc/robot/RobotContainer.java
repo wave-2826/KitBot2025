@@ -52,7 +52,7 @@ public class RobotContainer {
     // Set the options to show up in the Dashboard for selecting auto modes. If you
     // add additional auto modes you can add additional lines here with
     // autoChooser.addOption
-    autoChooser.setDefaultOption("Autonomous", new AutoCommand(driveSubsystem));
+    autoChooser.setDefaultOption("Autonomous", new AutoCommand(driveSubsystem, rollerSubsystem));
   }
 
   /**
@@ -70,12 +70,6 @@ public class RobotContainer {
    * joysticks}.
    */
   private void configureBindings() {
-    // Set the A button to run the "RollerCommand" command with a fixed
-    // value ejecting the gamepiece while the button is held
-
-    // before
-    operatorController.a()
-        .whileTrue(new RollerCommand(() -> RollerConstants.ROLLER_EJECT_VALUE, () -> 0, rollerSubsystem));
 
     // Set the default command for the drive subsystem to an instance of the
     // DriveCommand with the values provided by the joystick axes on the driver
@@ -87,7 +81,7 @@ public class RobotContainer {
     driveSubsystem.setDefaultCommand(new DriveCommand(
         () -> -driverController.getLeftY(),
         () -> -driverController.getRightY(),
-        () -> driverController.getLeftX(),
+        () -> driverController.getRightX(),
         driveSubsystem));
 
     // Set the default command for the roller subsystem to an instance of

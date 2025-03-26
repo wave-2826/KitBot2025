@@ -25,18 +25,15 @@ public final class Constants {
 
     public static final int DRIVE_MOTOR_CURRENT_LIMIT = 60;
 
-    public static final double MOTOR_SPEED = 0.50;
+    public static final double MOTOR_SPEED = 0.65;
 
     public static final boolean DRIVE_TYPE = true; // True = Diff. False = Tank
   }
 
   public static final class RollerConstants {
     public static final int ROLLER_MOTOR_ID = 29;
-    public static final int ROLLER_MOTOR_CURRENT_LIMIT = 60;
-    public static final double ROLLER_MOTOR_VOLTAGE_COMP = 10;
-    public static final double ROLLER_EJECT_VALUE = 0.44;
 
-    public static final double ROLLER_OUT_SPEED = 0.55; // AWAY FROM POLYCARB
+    public static final double ROLLER_OUT_SPEED = 0.75; // AWAY FROM POLYCARB
     public static final double ROLLER_IN_SPEED = 0.60; // TOWARD POLYCARB
   }
 

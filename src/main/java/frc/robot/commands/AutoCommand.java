@@ -7,22 +7,27 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.CANDriveSubsystem;
+import frc.robot.subsystems.CANRollerSubsystem;
 
 // Command to run the robot at 1/2 power for 1 second in autonomous
 public class AutoCommand extends Command {
   CANDriveSubsystem driveSubsystem;
+  CANRollerSubsystem rollerSubsystem;
   private Timer timer;
-  private double seconds = 1.0;
+  private double seconds = 1.2;
+  private double waitTime = 1.7;
 
   // Constructor. Runs only once when the command is first created.
-  public AutoCommand(CANDriveSubsystem driveSubsystem) {
+  public AutoCommand(CANDriveSubsystem driveSubsystem, CANRollerSubsystem rollerSubsystem) {
     // Save parameter for use later and initialize timer object.
     this.driveSubsystem = driveSubsystem;
+    this.rollerSubsystem = rollerSubsystem;
     timer = new Timer();
 
     // Declare subsystems required by this command. This should include any
     // subsystem this command sets and output of
     addRequirements(driveSubsystem);
+    addRequirements(rollerSubsystem);
   }
 
   // Runs each time the command is scheduled. For this command, we handle starting
@@ -39,13 +44,17 @@ public class AutoCommand extends Command {
   public void execute() {
     // drive at 1/2 speed
     driveSubsystem.tankDrive(0.5, 0.5);
+    if (timer.get() >= waitTime ) {
+      driveSubsystem.tankDrive(0.0, 0.0);
+      rollerSubsystem.runRoller(0, 0.50);
+    }
   }
 
   // Runs each time the command ends via isFinished or being interrupted.
   @Override
   public void end(boolean isInterrupted) {
     // stop drive motors
-    driveSubsystem.tankDrive(0.0, 0.0);
+    rollerSubsystem.runRoller(0, 0);
   }
 
   // Runs every cycle while the command is scheduled to check if the command is
@@ -54,6 +63,6 @@ public class AutoCommand extends Command {
   public boolean isFinished() {
     // check if timer exceeds seconds, when it has this will return true indicating
     // this command is finished
-    return timer.get() >= seconds;
+    return timer.get() >= seconds + 1;
   }
 }
